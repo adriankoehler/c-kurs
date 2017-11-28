@@ -54,7 +54,18 @@ void printTree(tree t, int depth) {
 }
 
 void defol(tree *p){
-  //entfernt alle blattknoten (linker&rechter teilbaum leer)
+  //entfernt alle blattknoten (knoten=linker&rechter teilbaum leer)
+  if (p == NULL || *p == NULL) return;
+
+  if ((*p)->left == NULL && (*p)->right == NULL){
+    tree tmp = (*p);
+    free(tmp);
+  }
+  else {
+    defol(&(*p)->left);
+    defol(&(*p)->right);
+  }
+  return;
 }
 
 
@@ -72,9 +83,15 @@ int main() {
     printf("\ns:\n");
     printTree(s, 0);
 
-    tree x = baz(t, s);
+    defol(&t);
+    printf("leafprod(t): %d\n", leafprod(t));
+    printf("\nt:\n");
+    printTree(t, 0);
+
+
+    /*tree x = baz(t, s);
     printf("\nbaz(t, s):\n");
-    printTree(x, 0);
+    printTree(x, 0);*/
 
     return 0;
 }
