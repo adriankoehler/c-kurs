@@ -56,10 +56,11 @@ void printTree(tree t, int depth) {
 void defol(tree *p){
   //entfernt alle blattknoten (knoten=linker&rechter teilbaum leer)
   if (p == NULL || *p == NULL) return;
-
+  //oder: (!p || !*P)
   if ((*p)->left == NULL && (*p)->right == NULL){
     tree tmp = (*p);
     free(tmp);
+    *p = NULL;
   }
   else {
     defol(&(*p)->left);
