@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-int main(void) {
-    puts("Dice rolling..");
-    srand(time(NULL));
-    for (int i = 0; i < 10; i++) {
-      int a = rand()*10.0f / RAND_MAX;
-      int b = rand()*10.0f / RAND_MAX;
-      printf("%a+%b",a,b);
-      int result;
-      scanf("%d*\n", &result);
-    }
+int main () {
+   int i, n;
+   time_t t;
 
-    return 0;
+   /* Intialize random number generator */
+   srand((unsigned) time(&t));
+   /* Print 10 random numbers from 1 to 6 */
+   n = 10;
+   for( i = 0 ; i < n ; i++ ) {
+      printf("%d\n", (rand() + 1) % 7);
+   }
+   return 0;
 }
